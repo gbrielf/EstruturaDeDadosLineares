@@ -17,6 +17,7 @@ public class testePilha {
 		Integer[] b = new Integer[1];
 		PilhaArray pp = new PilhaArray(10,10);
 		System.out.println("inserindo");
+		int inicio = System.currentTimeMillis());
 		for(int f=0;f<10;f++){
 		  System.out.println(f);		  
 		  pp.push(new Integer(f));
@@ -26,6 +27,10 @@ public class testePilha {
 			  System.out.print(f);
 			  System.out.println(" - "+pp.pop());
 		}
+		int fim = System.currentTimeMillis());
+
+		int tempo = inicio - fim;
+		System.out.println(tempo);
 		System.out.println(pp);		  
 	}
 }
