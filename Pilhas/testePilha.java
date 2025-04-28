@@ -5,6 +5,8 @@
  * Window - Preferences - Java - Code Style - Code Templates
  */
 
+import java.util.Scanner;
+
 /**
  * @author Robinson
  *
@@ -15,17 +17,20 @@ public class testePilha {
 
 	public static void main(String[] args) {		
 		Integer[] b = new Integer[1];
-		PilhaArray pp = new PilhaArray(10,100);
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Digite a capacidade (tamanho inicial da pilha):");
+		int capacidade = sc.nextInt();
+		System.out.println("Digite o fator de crescimento (como ela cresce, por incremento ou dobrando):");
+		int crescimento = sc.nextInt();
+
+		PilhaArray pp = new PilhaArray(capacidade,crescimento);
 		System.out.println("inserindo");
 		long inicio = System.currentTimeMillis();
-		for(int f=0;f<100;f++){
+		// length é igual a quantidade elementos que você quer por na pilha
+		for(int f=0;f<10000;f++){
 		  System.out.println(f);		  
 		  pp.push(new Integer(f));
-		}
-		System.out.println("retirando");
-		for(int f=0;f<10;f++){
-			  System.out.print(f);
-			  System.out.println(" - "+pp.pop());
 		}
 		long fim = System.currentTimeMillis();
 
