@@ -28,6 +28,13 @@ public class PilhaArray implements Pilha {
     a=new Object[capacidade];
     }
     
+    public void empty(){
+        for (int i = 0; i <= t; i++){
+            a[i] = null;
+        }
+        t = -1;
+    }
+
     public void push(Object o){
     if(t>=capacidade-1){
         if(FC==0)

@@ -28,8 +28,7 @@ public class testePilha {
 		System.out.println("inserindo");
 		long inicio = System.currentTimeMillis();
 		// length é igual a quantidade elementos que você quer por na pilha
-		for(int f=0;f<10000;f++){
-		  System.out.println(f);		  
+		for(int f=0; f<1000000; f++){
 		  pp.push(new Integer(f));
 		}
 		long fim = System.currentTimeMillis();
