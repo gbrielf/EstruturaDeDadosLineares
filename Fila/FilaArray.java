@@ -1,4 +1,6 @@
-public class FilaArray {
+import javax.management.RuntimeErrorException;
+
+public class FilaArray implements Fila{
     public int capacidade; //capacidade máxima de espaços
     public int tamanho; //tamanho de espaços ocupados
     public  Object[] a;
@@ -15,7 +17,7 @@ public class FilaArray {
     }
 
     // métodos
-    public boolean isEmpty(){
+    public boolean estaVazia(){
         if(tamanho ==0){
             return true;
         }else{
@@ -38,16 +40,19 @@ public class FilaArray {
 
     public void enqueue(Object o){
         if (isFull()){
+            int antigaCapacidade = capacidade;
             this.capacidade *= 2;
-            Object[] b = new Object[this.capacidade];
+            Object[] b = new Object[capacidade];
             int j = 0;
+            // fila não circular
             if (inicio < fim){
                 for(int i = inicio; i < fim; i++){
                     b[j++] = a[i];
                 }
+            // fila circular
             }else{
                 // for de inicio a capacidade (fim do array)
-                for(int i = inicio; i < capacidade; i++){
+                for(int i = inicio; i < antigaCapacidade; i++){
                     b[j++] = a[i];
                 }
                 // for do indice 0 do array ate fim
@@ -59,13 +64,29 @@ public class FilaArray {
             inicio = 0;
             fim = tamanho;       
         }
-        fim = (fim+1) % capacidade;
         a[fim] = o;
+        fim = (fim+1) % capacidade;
         tamanho++;
     }
     
+    public Object dequeue(){
+        if(estaVazia()){
+            throw new EFilaVazia("Fila vazia");
+        }
+        
+        Object resultado = this.a[inicio];
+        this.a[inicio] = null;
+        inicio = (inicio + 1) % capacidade;
+        tamanho--;
 
-    
+        return resultado;    
+    }
 
-    
+    public Object inicio(){
+        return a[inicio];
+    }
+
+    public int tamanho(){
+        return tamanho;
+    }
 }
