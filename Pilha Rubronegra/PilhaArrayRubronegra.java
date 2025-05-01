@@ -10,7 +10,7 @@ public class PilhaArrayRubronegra implements PilhaRubronegra {
         a = new Object[capacidade*2];
     }
     
-    public boolean estaVaziaVermelho(){
+    public boolean estaVaziaVermelha(){
        return tVermelho == -1;
     }
 
@@ -55,11 +55,21 @@ public class PilhaArrayRubronegra implements PilhaRubronegra {
     }
 
     public Object popVermelho(){
-        //nada aqui por enquanto
+        if(estaVaziaVermelha()){
+            throw new RuntimeException("a Pilha Vermelha está vazia.");
+        }
+        Object resultado = a[tVermelho];
+        a[tVermelho--] = null;
+        return resultado;
     }
 
     public Object popPreto(){
-        //nada aqui por enquanto
+        if(estaVaziaPreta()){
+            throw new RuntimeException("a Pilha Preta está vazia.");
+        }
+        Object resultado = a[tPreto];
+        a[tPreto++] = null;
+        return resultado;
     }
 
 

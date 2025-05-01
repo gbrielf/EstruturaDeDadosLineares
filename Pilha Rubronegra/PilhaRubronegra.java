@@ -1,5 +1,4 @@
 public interface PilhaRubronegra {
-    public int size();
     public boolean estaVaziaVermelha(); //ok
     public boolean estaVaziaPreta(); //ok
     public int tamanhoVermelha(); //ok

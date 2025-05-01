@@ -1,5 +1,3 @@
-import javax.management.RuntimeErrorException;
-
 public class FilaArray implements Fila{
     public int capacidade; //capacidade máxima de espaços
     public int tamanho; //tamanho de espaços ocupados
