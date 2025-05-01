@@ -1,50 +1,91 @@
 public class PilhaArrayRubronegra implements PilhaRubronegra {
     private int capacidade;
     private Object[] a;
-    private int tRed;
-    private int tBlack;
-    private int FC;
+    private int tVermelho;
+    private int tPreto;
     public PilhaArrayRubronegra (int capacidade, int crescimento){
         this.capacidade = capacidade;
-        tRed = -1;
-        tBlack = capacidade;
-        FC = crescimento;
-        if (crescimento <= 0)
-            FC = 0;
-        a = new Object[capacidade];
+        tVermelho = -1;
+        tPreto = capacidade;
+        a = new Object[capacidade*2];
+    }
+    
+    public boolean estaVaziaVermelho(){
+       return tVermelho == -1;
     }
 
-    public void empty(){
-        for (int i = 0; i <= tRed; i++){
-            a[i] = null;
-        }
-        tRed = -1;
-
-        for (int j = (capacidade - 1); j >= tBlack; j++){
-            a[j] = null;
-        }
-        tBlack = capacidade;
+    public boolean estaVaziaPreta(){
+        return tPreto == capacidade;
     }
 
-    public void pushRed(Object o){
-        if(tRed  >= (tBlack - 1)){
-            int antigaCapacidade = capacidade;
-            capacidade *= 2;
-            Object b[] = new Object[capacidade];
+    public int tamanhoVermelha(){
+        return tVermelho;
+    }
 
-            for (int i = 0; i <= tRed; i++){
-                b[i] = a[i];
-            }
+    public int tamanhoPreta(){
+        return capacidade - tPreto;
+    }
 
-            int novaTBlack = capacidade - (antigaCapacidade - tBlack);
-            for (int j = antigaCapacidade - 1; j >= tBlack; j--){
-                b[novaTBlack - (j - tBlack)] = a[j];       
-            }
-            tBlack = novaTBlack;
-            a = b;
+    public Object topoVermelho(){
+        if (tVermelho == -1) {
+            throw new RuntimeException("Pilha vermelha está vazia");
         }
+        return a[tVermelho];
+    }
 
-        a[++tRed] = o;
+    public Object topoPreto(){
+        if (tPreto == capacidade) {
+            throw new RuntimeException("Pilha preta está vazia");
+        }
+        return a[tPreto];
+    }
+
+    public void pushVermelho(Object o){
+        if(estaCheio()){
+            aumentarCapacidade();
+        }
+        a[++tVermelho] = o;
+    }
+    
+    public void pushPreto(Object o){
+        if(estaCheio()){
+            aumentarCapacidade();
+        }
+        a[--tPreto] = o;
+    }
+
+    public Object popVermelho(){
+        //nada aqui por enquanto
+    }
+
+    public Object popPreto(){
+        //nada aqui por enquanto
+    }
+
+
+
+    private void aumentarCapacidade(){
+        int capacidadeAntiga = capacidade;
+        capacidade *= 2;
+        Object[] b = new Object[capacidade];
+        
+        for (int i = 0; i <= tVermelho; i++){
+            b[i] = a[i];
+        }
+        
+        int j = capacidade - 1;
+        
+        for( int i = capacidadeAntiga - 1; i >= tPreto; i--){
+            b[j--] = a[i];
+        }
+        tPreto = j + 1;
+        a = b;
+    }
+    
+    
+    
+    public boolean estaCheio(){
+        return tVermelho == tPreto -1;
     }
 }
 

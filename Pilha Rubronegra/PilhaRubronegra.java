@@ -1,11 +1,13 @@
 public interface PilhaRubronegra {
     public int size();
-    public boolean isEmpty();
-    public Object topRed() throws PilhaVaziaExcecao;
-    public Object topBlack() throws PilhaVaziaExcecao;
-    public void pushRed(Object o);
-    public void pushBlack(Object o);
-    public Object popRed() throws PilhaVaziaExcecao;
-    public Object popBlack() throws PilhaVaziaExcecao;
-
+    public boolean estaVaziaVermelha(); //ok
+    public boolean estaVaziaPreta(); //ok
+    public int tamanhoVermelha(); //ok
+    public int tamanhoPreta(); //ok
+    public Object topoVermelho() throws PilhaVaziaExcecao; //ok
+    public Object topoPreto() throws PilhaVaziaExcecao; //ok
+    public void pushVermelho(Object o); //ok
+    public void pushPreto(Object o); //ok
+    public Object popVermelho() throws PilhaVaziaExcecao;
+    public Object popPreto() throws PilhaVaziaExcecao;
 } 
