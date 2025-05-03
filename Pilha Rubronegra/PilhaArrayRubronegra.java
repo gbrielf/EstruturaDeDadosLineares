@@ -3,7 +3,7 @@ public class PilhaArrayRubronegra implements PilhaRubronegra {
     private Object[] a;
     private int tVermelho;
     private int tPreto;
-    public PilhaArrayRubronegra (int capacidade, int crescimento){
+    public PilhaArrayRubronegra (int capacidade){
         this.capacidade = capacidade;
         tVermelho = -1;
         tPreto = capacidade;
@@ -28,14 +28,14 @@ public class PilhaArrayRubronegra implements PilhaRubronegra {
 
     public Object topoVermelho(){
         if (tVermelho == -1) {
-            throw new RuntimeException("Pilha vermelha está vazia");
+            throw new PilhaRubronegraVaziaExcecao("Pilha vermelha está vazia");
         }
         return a[tVermelho];
     }
 
     public Object topoPreto(){
         if (tPreto == capacidade) {
-            throw new RuntimeException("Pilha preta está vazia");
+            throw new PilhaRubronegraVaziaExcecao("Pilha preta está vazia");
         }
         return a[tPreto];
     }
@@ -72,8 +72,6 @@ public class PilhaArrayRubronegra implements PilhaRubronegra {
         return resultado;
     }
 
-
-
     private void aumentarCapacidade(){
         int capacidadeAntiga = capacidade;
         capacidade *= 2;
@@ -91,12 +89,37 @@ public class PilhaArrayRubronegra implements PilhaRubronegra {
         tPreto = j + 1;
         a = b;
     }
-    
+
+    public void diminuirCapacidade(){
+        int elementosTotais = tVermelho + 1 + (capacidade - tPreto);
+
+        if(elementosTotais <= capacidade/3  ){
+            int capacidadeAntiga = capacidade;
+            capacidade = capacidade / 2;
+            Object[] b = new Object[capacidade];
+
+            for(int i = 0; i <= tVermelho; i++){
+                b[i] = a[i];
+            }
+            
+            int novoTPreto = capacidade - (capacidadeAntiga - tPreto);
+            int j = novoTPreto;
+
+            for( int i = tPreto; i <= capacidadeAntiga; i++){
+                b[j++] = a[i];
+            }
+            tPreto = novoTPreto;
+            a = b;
+        }
+
+    }
     
     
     public boolean estaCheio(){
         return tVermelho == tPreto -1;
     }
+
+
 }
 
 
