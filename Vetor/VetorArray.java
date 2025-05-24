@@ -1,11 +1,21 @@
 public class VetorArray implements Vetor{
-    int tamanho;
-    int capacidade;
-    Object[] V = new Object[capacidade];
-    int r;
-    Object o = new Object();
+    private int capacidade;
+    private Object[] V
+    private int tamanho; //tamanho do vetor
 
-    public insertAtRank(r, o){
+    public VetorArray(int capacidade){
+        this.capacidade = capacidade;
+        this.V = new Object[capacidade];
+        this.tamanho = 0;
+    }
+ 
+    public void insertAtRank(int r, Object o) throws EColocacaoErrada, EVetorVazio{
+        if (tamanho >= capacidade){
+            throw new EColocacaoErrada("Capacidade máxima atingida");
+        }
+        if (r < 0 || r > tamanho){
+            throw new EColocacaoErrada("Posição inválida para inserção");
+        }
         for (int i = tamanho - 1; i > r; i--){
             V[i+1] = V[i];
         }
@@ -13,27 +23,46 @@ public class VetorArray implements Vetor{
         tamanho++;
     }
 
-    public replaceAtRank(r, o){
-        return V[r] = o;
+    public Object replaceAtRank(int r, Object o) throws EColocacaoErrada, EVetorVazio{
+        if (tamanho >= capacidade){
+            throw new EColocacaoErrada("Capacidade máxima atingida");
+        }
+        if (r < 0 || r > tamanho){
+            throw new EColocacaoErrada("Posição inválida para inserção");
+        }
+        Object antigo = V[r];
+        V[r] = o;
+        return antigo;
     }
 
-    public removeAtRank(r){
-        for(i = r; i < capacidade; i++){
+    public Object removeAtRank(int r) throws EColocacaoErrada, EVetorVazio{
+         if (tamanho >= capacidade){
+            throw new EColocacaoErrada("Capacidade máxima atingida");
+        }
+        if (r < 0 || r > tamanho){
+            throw new EColocacaoErrada("Posição inválida para inserção");
+        }
+        Object removido = V[r];
+        for(int i = r; i < tamanho - 1; i++){
             V[i] = V[i+1];
         }
+        V[tamanho-1] = null;
         tamanho--;
+        return removido;
     }
 
-    public elemAtRank(r){
+    public Object elemAtRank(int r){
+        if(r < 0 || r >= tamanho){
+            throw new IndexOutOfBoundsExcepciton("Indice Inválido");
+        }
         return V[r];
     }
 
-    public size(){
-        return capacidade;
+    public int size(){
+        return tamanho;
     }
 
-    public estaVazia(){
-        if capacidade == 0: return true
-        else: return false
+    public boolean estaVazia(){
+        return tamanho == 0;
     }
 }

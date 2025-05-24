@@ -1,9 +1,9 @@
 public interface Vetor{
-    public void insertAtRank(integer r, object o)  throws EColocacaoErrada, EVetorVazio;
-    public Object replaceAtRank(integer r, object o)  throws EColocacaoErrada, EVetorVazio;
-    public Object removeAtRank(integer r, object o) throws EColocacaoErrada, EVetorVazio;
-    public Object elemAtRank(integer r);
-    public void size();
-    public void estaVazia();
+    public void insertAtRank(int r, Object o)  throws EColocacaoErrada, EVetorVazio;
+    public Object replaceAtRank(int r, Object o)  throws EColocacaoErrada, EVetorVazio;
+    public Object removeAtRank(int r) throws EColocacaoErrada, EVetorVazio;
+    public Object elemAtRank(int r);
+    public int size();
+    public boolean estaVazia();
 
 }
