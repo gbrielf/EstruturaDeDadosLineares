@@ -5,6 +5,6 @@ public class TesteListaLigada{
         lista.insertInicio(7);
         lista.insertInicio(4);
         lista.insertInicio(-5);
-        lista.mostrarLista();
+        lista.mostrarElementos();
     }
 }

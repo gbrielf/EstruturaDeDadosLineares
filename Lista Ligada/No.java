@@ -7,16 +7,16 @@ public class No{
         this.proximo = null;
     }
 
-    public No GetProximo(){
+    public No getProximo(){
         return proximo;
     }
-    public Object GetElemento(){
+    public Object getElemento(){
         return elemento;
     }
-    public void SetProximo(No proximo){
+    public void setProximo(No proximo){
         this.proximo = proximo;
     }
-    public void SetElemento(No elemento){
+    public void setElemento(No elemento){
         this.elemento = elemento;
     }
 }

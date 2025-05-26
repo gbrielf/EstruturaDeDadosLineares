@@ -6,13 +6,13 @@ public class ListaLigada {
     public ListaLigada(){
         head = new No();
         tail = new No();
-        head.SetProximo(tail); 
+        head.setProximo(tail); 
     }
 
-    public void insertAfter(Object elemento){
+    public void insertAfter(No anterior, Object elemento){
         No no = new No(elemento);
-        no.SetProximo(anterior.GetProximo);
-        anterior.SetProximo(no);
+        no.setProximo(anterior.getProximo());
+        anterior.setProximo(no);
     }
     public void insertInicio(Object elemento){
         insertAfter(head, elemento);
