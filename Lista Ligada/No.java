@@ -16,7 +16,7 @@ public class No{
     public void setProximo(No proximo){
         this.proximo = proximo;
     }
-    public void setElemento(No elemento){
+    public void setElemento(Object elemento){
         this.elemento = elemento;
     }
 }
