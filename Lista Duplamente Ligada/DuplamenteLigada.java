@@ -108,6 +108,21 @@ public class DuplamentaLigada{
         }
         return r;
     }
-     
     
+    ////////////////////////////////////////////////////// Metodos vetor ///////////////////////////////////////////////////////////////////
+
+    public Object elementAtRank(int rank){
+        return atRank(rank).getElemento();
+    }
+    public void replaceAtRank(int rank, Object elemento){
+        atRank(rank).setElemento(elemento);
+    }
+    public void removeAtRank(int rank){
+        No no = atRank(rank);
+        remove(no);
+    }
+    public void insertAtRank(int rank, Object elemento){
+        inserirAntes(atRank(rank), elemento); 
+    }
+
  }
