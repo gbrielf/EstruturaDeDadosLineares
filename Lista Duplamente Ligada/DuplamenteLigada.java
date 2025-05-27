@@ -80,4 +80,34 @@ public class DuplamentaLigada{
     }
 
   
-}
+   
+    
+    ////////////////////////////////////////////////////////// Metodos ponte ////////////////////////////////////////////////////////////////
+
+
+    public No AtRank (int rank) {
+        No node;
+        if (rank <= size()/2) {
+        node = head.getProximo();
+        for(int i=0; i < rank; i++)
+        node = node.getProximo();
+        }else{
+        node = tail.getAnterior();
+        for(int i=0; i < size()-rank-1 ; i++)
+        node = node.getAnterior();
+        }
+        return node;
+    }
+
+    public int rankOf(No no) {
+        No n =head.getProximo();
+        int r = 0;
+        while(n != no && n != tail) {
+        n = n.getProximo();
+        r++;
+        }
+        return r;
+    }
+     
+    
+ }
