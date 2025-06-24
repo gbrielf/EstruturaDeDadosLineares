@@ -157,7 +157,9 @@ public class ArvoreGenerica
 		int altura = 0;
 		return altura;
 	}
+	
 	/** Retorna um iterator com os elementos armazenados na árvore */
+	// MÉTODOS A SEREM IMPLEMENTADOS: elements, iterator Nos, Size, isEmpty, replace
 	public Iterator elements()
 	{
         // Método que serve de exercício
